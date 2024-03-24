@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import cp from 'node:child_process';
+import cp, {spawn} from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -46,7 +46,7 @@ if (os.platform() == 'win32') {
 await run('curl', ['-o', pbzippath, '-L', pblink]);
 
 if (os.platform() == 'win32') {
-	await run('TAR.EXE', ['-xf', pbzippath, '-C', path.join(resolved, 'db') + path.sep]);
+	await run('Expand-Archive', [`-Force '${pbzippath}' -DestinationPath '${path.join(resolved, 'db')}'`])
 } else {
 	await run('unzip', [pbzippath, '-d', path.join(resolved, 'db') + path.sep]);
 }
@@ -70,7 +70,8 @@ await run('npm', [
 	'tailwindcss',
 	'autoprefixer',
 	'@sveltejs/adapter-node',
-	'pocketbase'
+	'pocketbase',
+	'stwui'
 ]);
 await run('npx', ['tailwindcss', 'init'], { cwd: 'web' });
 await run('npm', ['remove', '-w=web', '@sveltejs/adapter-auto']);
@@ -116,8 +117,13 @@ function run(command, args = [], options = {}) {
 		options.cwd = options.cwd || '.';
 
 		if (os.platform() === 'win32') {
-			options.execPath = 'CMD.EXE';
-			options.execArgv = ['/C'];
+			if (command === 'Expand-Archive'){
+				options.execPath = 'powershell.EXE';
+				options.execArgv = ['-Command'];
+			} else {
+				options.execPath = 'CMD.EXE';
+				options.execArgv = ['/C'];
+			}
 		} else {
 			options.execPath = 'bash';
 			options.execArgv = ['-c'];
