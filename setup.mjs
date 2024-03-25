@@ -71,7 +71,8 @@ await run('npm', [
 	'autoprefixer',
 	'@sveltejs/adapter-node',
 	'pocketbase',
-	'stwui'
+	'stwui',
+	'@tailwindcss/forms'
 ]);
 await run('npx', ['tailwindcss', 'init'], { cwd: 'web' });
 await run('npm', ['remove', '-w=web', '@sveltejs/adapter-auto']);
