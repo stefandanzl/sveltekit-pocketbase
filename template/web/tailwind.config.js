@@ -48,7 +48,7 @@ module.exports = {
 				warn-icon: '#facc15'
 			},
 		 },
-		 "dark",
+		 "dark",     // add <html data-theme="dark">
 		 "light",
 	  ],
 	},
