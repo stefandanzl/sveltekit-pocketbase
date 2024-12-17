@@ -21,3 +21,9 @@ Thumbs.db
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+
+#POCKETBASE
+POCKETBASE/pb_data
+POCKETBASE/pocketbase
+POCKETBASE/pocketbase.exe

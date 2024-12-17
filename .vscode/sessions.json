@@ -1,0 +1,37 @@
+{
+  "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v10/terminal-keeper.json",
+  "theme": "tribe",
+  "active": "default",
+  "activateOnStartup": true,
+  "keepExistingTerminals": true,
+  "sessions": {
+    "default": [
+      {
+        "name": "web",
+        "autoExecuteCommands": true,
+        "icon": "person",
+        "color": "terminal.ansiGreen",
+        "commands": [
+          "npm run dev"
+        ]
+      },
+      {
+        "name": "db",
+        "autoExecuteCommands": true,
+        "icon": "person",
+        "color": "terminal.ansiBlue",
+        "commands": [
+          "./POCKETBASE/pocketbase.exe serve"
+        ]
+      }
+    ],
+    "saved-session": [
+      {
+        "name": "connect",
+        "commands": [
+          ""
+        ]
+      }
+    ]
+  }
+}
